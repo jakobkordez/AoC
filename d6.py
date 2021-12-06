@@ -1,8 +1,20 @@
 import numpy as np
 
 with open('i6.txt') as file:
-    data = np.array(list(map(int, file.read().strip().split(','))))
+    data = np.array(file.read().strip().split(','), dtype=np.int64)
 
+# Smart
+sma = list(np.bincount(data, minlength=9))
+
+for i in range(256):
+    sma[7] += sma[0]
+    sma = sma[1:] + [sma[0]]
+    if i + 1 == 80:
+        print('Part 1:', sum(sma))
+
+print('Part 2:', sum(sma))
+
+# Initial
 cc = np.ones_like(data, dtype=np.int64)
 
 for i in range(256):
