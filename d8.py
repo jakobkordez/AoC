@@ -16,7 +16,7 @@ for i, o in d:
 
     h = n[8] - n[4]
     n[5], n[2], n[6], n[3], n[9], n[0] = \
-        sorted(i, key=lambda x: (x.issuperset(n[1]), len(x), x.issuperset(h)))
+        sorted(i, key=lambda x: (x.issuperset(n[1]), x.issuperset(h)))
 
     sm += int(''.join([str(n.index(set(a))) for a in o]))
 
