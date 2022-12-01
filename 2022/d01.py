@@ -1,4 +1,4 @@
-with open('d1.txt') as f:
+with open('i01.txt') as f:
     file = f.read().strip()
 
 elves = [sum(map(int, elf.split())) for elf in file.split('\n\n')]
