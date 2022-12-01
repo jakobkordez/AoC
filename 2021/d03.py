@@ -1,6 +1,6 @@
 import numpy as np
 
-with open('i3.txt') as file:
+with open('i03.txt') as file:
     data = np.array([list(a.strip()) for a in file.readlines()], dtype=np.int0)
 
 bits = data.shape[1]                # Number of bits

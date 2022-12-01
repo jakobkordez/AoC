@@ -1,6 +1,6 @@
 import numpy as np
 
-with open('i7.txt') as file:
+with open('i07.txt') as file:
     d = np.array(file.read().split(','), dtype=np.int32)
 
 p1 = p2 = np.inf

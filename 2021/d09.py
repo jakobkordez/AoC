@@ -1,6 +1,6 @@
 import numpy as np
 
-with open('i9.txt') as file:
+with open('i09.txt') as file:
     data = np.array([list(a.strip()) for a in file.readlines()], dtype=np.int8)
 
 

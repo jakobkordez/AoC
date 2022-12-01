@@ -5,7 +5,7 @@ void main() {
   BigInt d7 = BigInt.zero, d8 = BigInt.zero, t;
   int i;
   final d = List.filled(7, BigInt.zero);
-  File('i6.txt')
+  File('i06.txt')
       .readAsStringSync()
       .split(',')
       .forEach((e) => d[int.parse(e)] += BigInt.one);

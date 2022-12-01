@@ -2,7 +2,7 @@ import 'dart:io';
 
 void main() {
   // Part 2
-  print(File('i2.txt')
+  print(File('i02.txt')
       .readAsLinesSync()
       .map((e) => e.split(' '))
       .map((e) => [e[0], int.parse(e[1])])

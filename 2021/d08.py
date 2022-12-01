@@ -1,6 +1,6 @@
 import numpy as np
 
-with open('i8.txt') as file:
+with open('i08.txt') as file:
     d = [[a.split() for a in l.split(' | ')] for l in file.readlines()]
 
 

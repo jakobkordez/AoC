@@ -1,6 +1,6 @@
 import numpy as np
 
-with open('i6.txt') as file:
+with open('i06.txt') as file:
     data = np.array(file.read().strip().split(','), dtype=np.int64)
 
 # Smart

@@ -1,7 +1,7 @@
 import re
 import numpy as np
 
-with open('i4.txt') as file:
+with open('i04.txt') as file:
     raw = file.read().split('\n\n')
 
 nums = np.array(list(map(int, raw[0].split(','))))

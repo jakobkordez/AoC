@@ -1,6 +1,6 @@
 # Part 1
 p, d = 0, 0
-with open('i2.txt') as file:
+with open('i02.txt') as file:
     data = file.readlines()
 for c in data:
     a, b = c.strip().split()
@@ -16,7 +16,7 @@ print(d * p)
 
 # Part 2
 p, d, a = 0, 0, 0
-with open('i2.txt') as file:
+with open('i02.txt') as file:
     data = file.readlines()
 for c in data:
     c, x = c.strip().split()
