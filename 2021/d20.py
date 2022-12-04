@@ -1,6 +1,6 @@
 import numpy as np
 
-with open('input20.txt') as f:
+with open('i20.txt') as f:
     key, mp = f.read().strip().split('\n\n')
 
 key = np.array([int(e == '#') for e in key])
