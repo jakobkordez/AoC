@@ -8,5 +8,5 @@ def _read(s: str, dellimiters: list, typ: type):
 
 def read(name: str, dellimiters: list = [], typ: type = str):
     with open(f'{name}.txt') as f:
-        file = f.read().strip()
+        file = f.read().rstrip()
     return _read(file, dellimiters, typ)
