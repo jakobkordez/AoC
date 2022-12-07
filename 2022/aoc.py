@@ -6,7 +6,7 @@ def _read(s: str, dellimiters: list, typ: type):
         return typ(s)
 
 
-def read(name: str, dellimiters: list = [], typ: type = str):
+def read(name: str, dellimiters: list = [], typ: type = str, lstrip: str = '', rstrip: str = None):
     with open(f'{name}.txt') as f:
-        file = f.read().rstrip()
+        file = f.read().rstrip(rstrip).lstrip(lstrip)
     return _read(file, dellimiters, typ)
