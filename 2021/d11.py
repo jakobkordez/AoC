@@ -19,6 +19,6 @@ while not np.all(d == 0):
     p1 += np.sum(fl)
     d[np.nonzero(fl)] = 0
     if p2 == 100:
-        print(p1)
+        print('Part 1:', p1)
 
-print(p2)
+print('Part 2:', p2)

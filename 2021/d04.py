@@ -23,19 +23,19 @@ print('Part 1:', getScore(boards[first], boardWins[first] + 1))
 print('Part 2:', getScore(boards[last], boardWins[last] + 1))
 
 # Dumb way
-score = None
-wb = [False] * len(boards)
-for i in range(5, len(nums)):
-    for bi in range(len(boards)):
-        if wb[bi]:
-            continue
-        b = boards[bi]
-        for j in range(5):
-            if np.all(np.isin(b[j], nums[:i])) or np.all(np.isin(b[:, j], nums[:i])):
-                tscore = getScore(b, i)
-                wb[bi] = True
-                if score == None:
-                    print('Part 1:', tscore)
-                score = tscore
+# score = None
+# wb = [False] * len(boards)
+# for i in range(5, len(nums)):
+#     for bi in range(len(boards)):
+#         if wb[bi]:
+#             continue
+#         b = boards[bi]
+#         for j in range(5):
+#             if np.all(np.isin(b[j], nums[:i])) or np.all(np.isin(b[:, j], nums[:i])):
+#                 tscore = getScore(b, i)
+#                 wb[bi] = True
+#                 if score == None:
+#                     print('Part 1:', tscore)
+#                 score = tscore
 
-print('Part 2:', score)
+# print('Part 2:', score)

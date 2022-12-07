@@ -8,7 +8,7 @@ bp = 2 ** np.arange(bits)[::-1]     # Helper array [.., 8, 4, 2, 1]
 
 # Part 1
 g = np.array([np.argmax(np.bincount(data[:, i])) for i in range(bits)])
-print(sum(g * bp) * sum((1 - g) * bp))
+print('Part 1:', sum(g * bp) * sum((1 - g) * bp))
 
 # Part 2
 ox = np.array(data)
@@ -23,4 +23,4 @@ for i in range(bits):
     if len(coo) == 1:
         break
 
-print(sum(ox[0] * bp) * sum(coo[0] * bp))
+print('Part 2:', sum(ox[0] * bp) * sum(coo[0] * bp))

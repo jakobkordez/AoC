@@ -5,7 +5,22 @@ with open('i23.txt') as f:
     temp = [-1] * 11
 
 
+mem = {}
+
+
+def encodeState(state: list[list[int]], temp: list[int]) -> str:
+    ret = ''
+    for i in range(4):
+        for r in range(ROWS):
+            ret += chr(state[i][r]+65) if r < len(state[i]) else '.'
+    return ret + ''.join(chr(e+65) if e != -1 else '.' for e in temp)
+
+
 def play(state: list[list[int]], temp: list[int]) -> int:
+    mem_key = encodeState(state, temp)
+    if mem_key in mem:
+        return mem[mem_key]
+
     state = [[*e] for e in state]
     temp = [*temp]
     cost = 0
@@ -72,7 +87,9 @@ def play(state: list[list[int]], temp: list[int]) -> int:
                 temp[r] = -1
             r += 1
         state[i].append(ch)
-    return minCost + cost
+
+    mem[mem_key] = minCost + cost
+    return mem[mem_key]
 
 
 ROWS = len(s[0])

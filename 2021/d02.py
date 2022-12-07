@@ -1,7 +1,8 @@
-# Part 1
-p, d = 0, 0
 with open('i02.txt') as file:
     data = file.readlines()
+
+# Part 1
+p, d = 0, 0
 for c in data:
     a, b = c.strip().split()
     if a == 'forward':
@@ -12,12 +13,10 @@ for c in data:
         d -= int(b)
         if d < 0:
             d = 0
-print(d * p)
+print('Part 1:', d * p)
 
 # Part 2
 p, d, a = 0, 0, 0
-with open('i02.txt') as file:
-    data = file.readlines()
 for c in data:
     c, x = c.strip().split()
     if c == 'forward':
@@ -27,4 +26,4 @@ for c in data:
         a += int(x)
     elif c == 'up':
         a -= int(x)
-print(d * p)
+print('Part 2:', d * p)
