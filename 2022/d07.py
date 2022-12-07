@@ -1,5 +1,5 @@
 from aoc import *
-from bisect import bisect
+from bisect import bisect_right
 
 cmds = read('i07', ['\n$ ', '\n', ' '], lstrip='$ ')
 
@@ -19,15 +19,11 @@ for (cmd, *args), *res in cmds:
                     case _: curr['f'] += int(size)
 
 
-s1 = 0
 dirs = []
 
 
 def dfs(node):
     size = sum(map(dfs, node['d'].values())) + node['f']
-    if size <= 100000:
-        global s1
-        s1 += size
     dirs.append(size)
     return size
 
@@ -35,5 +31,5 @@ def dfs(node):
 requiredSpace = dfs(root) - 40000000
 dirs.sort()
 
-print('Part 1:', s1)
-print('Part 2:', dirs[bisect(dirs, requiredSpace)])
+print('Part 1:', sum(dirs[:bisect_right(dirs, 100000)]))
+print('Part 2:', dirs[bisect_right(dirs, requiredSpace)])
