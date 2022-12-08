@@ -4,7 +4,8 @@ from os import path
 def _read(s: str, dellimiters: list, typ: type):
     if dellimiters:
         cd, *dellimiters = dellimiters
-        return [_read(x, dellimiters, typ) for x in s.split(cd)]
+        s = s.split(cd) if type(cd) is str else cd(s)
+        return [_read(x, dellimiters, typ) for x in s]
     else:
         return typ(s)
 
