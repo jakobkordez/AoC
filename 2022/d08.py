@@ -15,7 +15,7 @@ def f(x, y, dx, dy):
         ny += dy
 
     p1 = nx < 0 or nx == w or ny < 0 or ny == h
-    p2 = abs(x - min(max(0, nx), w-1) + y - min(max(0, ny), h-1))
+    p2 = abs(x - clamp(0, nx, w-1) + y - clamp(0, ny, h-1))
     return p1, p2
 
 

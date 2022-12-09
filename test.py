@@ -7,8 +7,6 @@ from os import path
 
 partRe = re.compile(r'Part (\d+): (\S+)')
 
-print(sys.argv)
-
 
 class _Test(unittest.TestCase):
     def __init__(self, year, *args, **kwargs) -> None:
@@ -44,6 +42,7 @@ class Test2022(_Test):
         ['d06', '1647', '2447'],
         ['d07', '1770595', '2195372'],
         ['d08', '1695', '287040'],
+        ['d09', '6266', '2369'],
     ])
     def test(self, day, *answers):
         super()._test(day, *answers)

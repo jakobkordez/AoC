@@ -17,3 +17,7 @@ def read(name: str, dellimiters: list = [], typ: type = str, lstrip: str = '', r
         file = f.read().rstrip(rstrip).lstrip(lstrip)
 
     return _read(file, dellimiters, typ)
+
+
+def clamp(a: int, x: int, b: int):
+    return max(a, min(x, b))
