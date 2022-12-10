@@ -1,6 +1,7 @@
+import re
 from aoc import *
 
-instr = read('i10', ['\n', ' '])
+instr = re.sub(r'[a-z]+', '0', read('i10')).split()
 
 reg = 1
 cy = 1
@@ -8,21 +9,12 @@ cy = 1
 s1 = 0
 s2 = ''
 
-
-def ex(arg=None):
-    global reg, cy, s1, s2
+for e in instr:
     s2 += '# ' if reg-1 <= (cy - 1) % 40 <= reg+1 else '  '
-    if arg:
-        reg += int(arg)
+    reg += int(e)
     cy += 1
     if cy % 40 == 20:
         s1 += cy * reg
-
-
-for cmd, *arg in instr:
-    ex()
-    if cmd == 'addx':
-        ex(*arg)
 
 
 print('Part 1:', s1)
