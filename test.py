@@ -43,9 +43,28 @@ class Test2022(_Test):
         ['d07', '1770595', '2195372'],
         ['d08', '1695', '287040'],
         ['d09', '6266', '2369'],
+        ['d10', '13220'],
     ])
     def test(self, day, *answers):
         super()._test(day, *answers)
+
+    def test_d10_part2(self):
+        cwd = path.join(path.dirname(__file__), '2022')
+        output = subprocess.check_output([sys.executable, 'd10.py'], cwd=cwd)
+        output = list(map(str.rstrip, output.decode().splitlines()))
+
+        expected = [
+            '# # #     #     #     # #     #     #   #     #   # # #     # # # #   #     #',
+            '#     #   #     #   #     #   #   #     #     #   #     #   #         #   #',
+            '#     #   #     #   #     #   # #       # # # #   # # #     # # #     # #',
+            '# # #     #     #   # # # #   #   #     #     #   #     #   #         #   #',
+            '#   #     #     #   #     #   #   #     #     #   #     #   #         #   #',
+            '#     #     # #     #     #   #     #   #     #   # # #     # # # #   #     #',
+        ]
+
+        for i, line in enumerate(expected):
+            self.assertEqual(line, output[i+2],
+                             f'Part 2 incorrect on 2022/d10')
 
 
 @unittest.skip
@@ -98,7 +117,8 @@ class Test2021(_Test):
         ]
 
         for i, line in enumerate(expected):
-            self.assertEqual(line, output[i+2], f'Part 2 incorrect on d13.py')
+            self.assertEqual(line, output[i+2],
+                             f'Part 2 incorrect on 2021/d13')
 
 
 if __name__ == '__main__':

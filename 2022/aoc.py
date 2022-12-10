@@ -21,3 +21,7 @@ def read(name: str, dellimiters: list = [], typ: type = str, lstrip: str = '', r
 
 def clamp(a: int, x: int, b: int):
     return max(a, min(x, b))
+
+
+def splitByCount(s: str, c: int):
+    return [s[i:i+c] for i in range(0, len(s), c)]
