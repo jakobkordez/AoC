@@ -20,8 +20,7 @@ def solve(rounds, evals):
     for _ in range(rounds):
         for i, (_, test, deci) in enumerate(monkeys):
             obs[i] += len(holding[i])
-            for val in holding[i]:
-                val = evals[i](val)
+            for val in map(evals[i], holding[i]):
                 holding[deci[val % test > 0]] += [val]
             holding[i] = []
 
