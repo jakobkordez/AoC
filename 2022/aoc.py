@@ -25,3 +25,7 @@ def clamp(a: int, x: int, b: int):
 
 def splitByCount(s: str, c: int):
     return [s[i:i+c] for i in range(0, len(s), c)]
+
+
+FOUR_NEIGHBOURS = ((0, 1), (0, -1), (1, 0), (-1, 0))
+EIGHT_NEIGHBOURS = (*FOUR_NEIGHBOURS, (1, 1), (1, -1), (-1, 1), (-1, -1))
