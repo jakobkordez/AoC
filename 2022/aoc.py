@@ -1,4 +1,6 @@
 from os import path
+from random import choice
+from typing import Callable, Any
 
 
 def _read(s: str, dellimiters: list, typ: type):
@@ -25,6 +27,30 @@ def clamp(a: int, x: int, b: int):
 
 def splitByCount(s: str, c: int):
     return [s[i:i+c] for i in range(0, len(s), c)]
+
+
+def qsorted(arr: list, cmp: Callable[[Any, Any], int]) -> list:
+    """
+    Quick sort list with a custom comparator
+
+    Returns a new list
+    """
+
+    if len(arr) <= 1:
+        return arr
+    pivot = choice(arr)
+    left = []
+    middle = []
+    right = []
+    for x in arr:
+        cv = cmp(x, pivot)
+        if cv < 0:
+            left.append(x)
+        elif cv == 0:
+            middle.append(x)
+        else:
+            right.append(x)
+    return qsorted(left, cmp) + middle + qsorted(right, cmp)
 
 
 FOUR_NEIGHBOURS = ((0, 1), (0, -1), (1, 0), (-1, 0))
