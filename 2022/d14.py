@@ -2,7 +2,7 @@ from aoc import *
 
 data = read('i14', ['\n', ' -> ', ','], int)
 
-field = set()
+field = [[False]*1000 for _ in range(1000)]
 mxy = 0
 
 for seg in data:
@@ -15,10 +15,10 @@ for seg in data:
 
         if x1 == x2:
             for y in range(y1, y2+1):
-                field.add((x1, y))
+                field[y][x1] = True
         else:
             for x in range(x1, x2+1):
-                field.add((x, y1))
+                field[y1][x] = True
 
 
 p1 = None
@@ -27,12 +27,12 @@ y = 1
 while y != 0:
     x, y = 500, 0
     while y <= mxy:
-        if (x, y+1) not in field:
+        if not field[y+1][x]:
             y += 1
-        elif (x-1, y+1) not in field:
+        elif not field[y+1][x-1]:
             x -= 1
             y += 1
-        elif (x+1, y+1) not in field:
+        elif not field[y+1][x+1]:
             x += 1
             y += 1
         else:
@@ -40,7 +40,7 @@ while y != 0:
     else:
         if p1 == None:
             p1 = p2
-    field.add((x, y))
+    field[y][x] = True
     p2 += 1
 
 
