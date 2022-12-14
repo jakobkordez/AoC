@@ -21,28 +21,25 @@ for seg in data:
                 field[y1][x] = True
 
 
-p1 = None
-p2 = 0
-y = 1
-while y != 0:
-    x, y = 500, 0
-    while y <= mxy:
-        if not field[y+1][x]:
-            y += 1
-        elif not field[y+1][x-1]:
-            x -= 1
-            y += 1
-        elif not field[y+1][x+1]:
-            x += 1
-            y += 1
-        else:
-            break
-    else:
-        if p1 == None:
-            p1 = p2
+def solve(x, y, p1):
+    if y > mxy + 1:
+        return p1, 0
+    if field[y][x]:
+        return False, 0
+
+    r = 0
+    for dx in [0, -1, 1]:
+        ex, tr = solve(x+dx, y+1, p1)
+        r += tr
+        if ex:
+            return True, r
+
     field[y][x] = True
-    p2 += 1
+    return False, r + 1
 
 
-print('Part 1:', p1)
-print('Part 2:', p2)
+s1 = solve(500, 0, True)[1]
+s2 = solve(500, 0, False)[1]
+
+print('Part 1:', s1)
+print('Part 2:', s1 + s2)
