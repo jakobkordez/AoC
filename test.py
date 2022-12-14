@@ -47,6 +47,7 @@ class Test2022(_Test):
         ['d11', '58056', '15048718170'],
         ['d12', '484', '478'],
         ['d13', '5588', '23958'],
+        ['d14', '817', '23416'],
     ])
     def test(self, day, *answers):
         super()._test(day, *answers)
