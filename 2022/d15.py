@@ -39,34 +39,36 @@ for sx, sy, bx, by in sensors:
     rig = (sx + mdist + 1, sy)
     bot = (sx, sy + mdist + 1)
     lef = (sx - mdist - 1, sy)
-    lines |= {
+    lines.update([
         get_kn(top, rig),
         get_kn(rig, bot),
         get_kn(bot, lef),
         get_kn(lef, top)
-    }
+    ])
 
 
-points = set()
 lines = list(lines)
+done = False
 for i, (k1, n1) in enumerate(lines):
     for k2, n2 in lines[i+1:]:
         if k1 == k2:
             continue
+
         x = (n2 - n1) / (k1 - k2)
         if x != int(x):
             continue
         x = int(x)
         y = k1*x + n1
-        if 0 <= x < M4 and 0 <= y < M4:
-            points |= {(x, y)}
+        if x > M4 or y > M4 or x < 0 or y < 0:
+            continue
 
-
-for x, y in points:
-    for sx, sy, bx, by in sensors:
-        mdist = abs(sx - bx) + abs(sy - by)
-        if abs(sx - x) + abs(sy - y) <= mdist:
+        for sx, sy, bx, by in sensors:
+            mdist = abs(sx - bx) + abs(sy - by)
+            if abs(sx - x) + abs(sy - y) <= mdist:
+                break
+        else:
+            print('Part 2:', x*M4 + y)
+            done = True
             break
-    else:
-        print('Part 2:', x*M4 + y)
+    if done:
         break
