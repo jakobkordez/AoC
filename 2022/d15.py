@@ -23,23 +23,50 @@ print('Part 1:', mx - mn + s1)
 M4 = 4_000_000
 
 
-def solve(y):
-    r = []
+def get_kn(a, b):
+    """ Get line k and n from two points """
+    if a > b:
+        a, b = b, a
+    k = 1 if a[1] < b[1] else -1
+    n = a[1] - k*a[0]
+    return k, n
+
+
+lines = set()
+for sx, sy, bx, by in sensors:
+    mdist = abs(sx - bx) + abs(sy - by)
+    top = (sx, sy - mdist - 1)
+    rig = (sx + mdist + 1, sy)
+    bot = (sx, sy + mdist + 1)
+    lef = (sx - mdist - 1, sy)
+    lines |= {
+        get_kn(top, rig),
+        get_kn(rig, bot),
+        get_kn(bot, lef),
+        get_kn(lef, top)
+    }
+
+
+points = set()
+lines = list(lines)
+for i, (k1, n1) in enumerate(lines):
+    for k2, n2 in lines[i+1:]:
+        if k1 == k2:
+            continue
+        x = (n2 - n1) / (k1 - k2)
+        if x != int(x):
+            continue
+        x = int(x)
+        y = k1*x + n1
+        if 0 <= x < M4 and 0 <= y < M4:
+            points |= {(x, y)}
+
+
+for x, y in points:
     for sx, sy, bx, by in sensors:
-        mdist = abs(sx - bx) + abs(sy - by) - abs(sy - y)
-        if mdist > 0:
-            r += [(sx - mdist, sx + mdist + 1)]
-
-    r.sort()
-    mxr = r[0][1]
-    for left, right in r[1:]:
-        if left > mxr:
-            return left - 1,  y
-        mxr = max(mxr, right)
-
-
-for y in range(M4, 0, -1):
-    s2 = solve(y)
-    if s2:
-        print('Part 2:', s2[1] + s2[0]*M4)
+        mdist = abs(sx - bx) + abs(sy - by)
+        if abs(sx - x) + abs(sy - y) <= mdist:
+            break
+    else:
+        print('Part 2:', x*M4 + y)
         break
