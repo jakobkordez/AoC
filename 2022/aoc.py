@@ -8,17 +8,17 @@ def _read(s: str, dellimiters: list, typ: type):
     if dellimiters:
         cd, *dellimiters = dellimiters
         if type(cd) is str:
-            s = s.split(cd)
+            ts = s.split(cd)
         elif type(cd) is Pattern:
-            s = cd.findall(s)
+            ts = cd.findall(s)
         else:
-            s = cd(s)
-        return [_read(x, dellimiters, typ) for x in s]
+            ts = cd(s)
+        return [_read(x, dellimiters, typ) for x in ts]
     else:
         return typ(s)
 
 
-def read(name: str, dellimiters: list = [], typ: type = str, lstrip: str = '', rstrip: str = None):
+def read(name: str, dellimiters: list = [], typ: type = str, lstrip: str = '', rstrip: str | None = None):
     inpPath = path.join(path.dirname(__file__), f'{name}.txt')
 
     with open(inpPath) as f:
