@@ -1,12 +1,18 @@
 from os import path
 from random import choice
 from typing import Callable, Any
+from re import Pattern
 
 
 def _read(s: str, dellimiters: list, typ: type):
     if dellimiters:
         cd, *dellimiters = dellimiters
-        s = s.split(cd) if type(cd) is str else cd(s)
+        if type(cd) is str:
+            s = s.split(cd)
+        elif type(cd) is Pattern:
+            s = cd.findall(s)
+        else:
+            s = cd(s)
         return [_read(x, dellimiters, typ) for x in s]
     else:
         return typ(s)

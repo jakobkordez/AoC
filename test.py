@@ -15,8 +15,11 @@ class _Test(unittest.TestCase):
 
     def _test(self, day, *answers):
         cwd = path.join(path.dirname(__file__), f'{self.year}')
-        output = subprocess.check_output(
-            [sys.executable, f'{day}.py'], cwd=cwd)
+        try:
+            output = subprocess.check_output(
+                [sys.executable, f'{day}.py'], cwd=cwd, timeout=3)
+        except subprocess.TimeoutExpired:
+            self.skipTest(f'Timeout on {self.year}/{day}')
 
         checked = [False] * len(answers)
         for m in partRe.finditer(output.decode()):
@@ -48,6 +51,7 @@ class Test2022(_Test):
         ['d12', '484', '478'],
         ['d13', '5588', '23958'],
         ['d14', '817', '23416'],
+        ['d15', '4724228', '13622251246513'],
     ])
     def test(self, day, *answers):
         super()._test(day, *answers)
