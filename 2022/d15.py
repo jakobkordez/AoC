@@ -2,7 +2,6 @@ from aoc import *
 import re
 
 sensors = read('i15', ['\n', re.compile(r'-?\d+')], int)
-sensors.sort()
 
 y = 2_000_000
 
