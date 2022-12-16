@@ -4,27 +4,39 @@ from typing import Callable, Any
 from re import Pattern
 
 
-def _read(s: str, dellimiters: list, typ: type):
-    if dellimiters:
-        cd, *dellimiters = dellimiters
-        if type(cd) is str:
-            ts = s.split(cd)
-        elif type(cd) is Pattern:
-            ts = cd.findall(s)
+def _read(s: str, operation: list, typ: type):
+    if operation:
+        cop, *operation = operation
+        if type(cop) is str:
+            ts = s.split(cop)
+        elif type(cop) is Pattern:
+            ts = cop.findall(s)
         else:
-            ts = cd(s)
-        return [_read(x, dellimiters, typ) for x in ts]
+            ts = cop(s)
+        return [_read(x, operation, typ) for x in ts]
     else:
         return typ(s)
 
 
-def read(name: str, dellimiters: list = [], typ: type = str, lstrip: str = '', rstrip: str | None = None):
+def read(name: str, operations: list = [], typ: type = str, lstrip: str = '', rstrip: str | None = None):
+    """
+    Reads text file and transforms into specified shape and type
+
+    `operations`: list of operations to perform on the input
+        `str`: split by `str`
+        `Pattern`: findall by `Pattern`
+        `Callable`: call with input
+    `typ`: type to cast to
+    `lstrip`: `str` to lstrip
+    `rstrip`: `str` to rstrip
+    """
+
     inpPath = path.join(path.dirname(__file__), f'{name}.txt')
 
     with open(inpPath) as f:
         file = f.read().rstrip(rstrip).lstrip(lstrip)
 
-    return _read(file, dellimiters, typ)
+    return _read(file, operations, typ)
 
 
 def clamp(a: int, x: int, b: int):
