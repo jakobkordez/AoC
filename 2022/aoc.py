@@ -72,4 +72,6 @@ def qsorted(arr: list, cmp: Callable[[Any, Any], int]) -> list:
 
 
 FOUR_NEIGHBOURS = ((0, 1), (0, -1), (1, 0), (-1, 0))
+SIX_NEIGHBOURS = ((0, 0, 1), (0, 0, -1), (0, 1, 0),
+                  (0, -1, 0), (1, 0, 0), (-1, 0, 0))
 EIGHT_NEIGHBOURS = (*FOUR_NEIGHBOURS, (1, 1), (1, -1), (-1, 1), (-1, -1))
