@@ -19,11 +19,11 @@ shapes = [
 di = 0
 
 maxy = 0
-for shape in islice(cycle(shapes), 2023):
-    y = maxy + 4
+for shape in islice(cycle(shapes), 2022):
+    y = maxy + 3
     x = 2
     shapeh, shapew = len(shape), len(shape[0])
-    while y > 0:
+    while y >= 0:
         # Jets
         jetd = jets[di % len(jets)]
         di += 1
@@ -46,7 +46,7 @@ for shape in islice(cycle(shapes), 2023):
             x -= dx
         y -= 1
         # Check collision
-        colides = False
+        colides = y < 0
         for yy in range(shapeh):
             for xx in range(shapew):
                 if shape[yy][xx] == '#' and field[y + yy][x + xx] == '#':
