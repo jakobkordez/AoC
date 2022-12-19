@@ -1,15 +1,15 @@
 from aoc import *
 import re
-import math
+from math import prod
 import multiprocessing as mp
+import argparse
 
 # Bad solution, but it works
 # Too slow and too much memory usage
 
 
 def solve(blueprint, time):
-    id, oreRore, clayRore, obsRore, obsRclay, geoRore, geoRobs = blueprint
-    print('Blueprint', id)
+    _, oreRore, clayRore, obsRore, obsRclay, geoRore, geoRobs = blueprint
 
     memo = {}
 
@@ -52,25 +52,33 @@ def solve(blueprint, time):
         return best
 
     tmp = f(time)
-    print('Done blueprint', id)
     memo.clear()
     return tmp
 
 
-def solve1(b):
-    return solve(b, 24) * b[0]
-
-
-def solve2(b):
-    return solve(b, 32)
+def solvee(p):
+    b, time = p
+    print('Solving blueprint', b[0], 'with time', time, '...')
+    tmp = solve(b, time)
+    print('Done blueprint', b[0], 'with time', time)
+    return tmp
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', action='store_true')
+    args = parser.parse_args()
 
     blueprints = read('i19', ['\n', re.compile(r'\d+')], int)
 
-    with mp.Pool() as pool:
-        print('Part 1:', sum(pool.map(solve1, blueprints)))
+    if args.p:
+        with mp.Pool() as pool:
+            bparams = blueprints[:3] + blueprints
+            tparams = [32] * 3 + [24] * len(blueprints)
+            r = pool.map(solvee, zip(bparams, tparams))
 
-    with mp.Pool() as pool:
-        print('Part 2:', math.prod(pool.map(solve2, blueprints[:3])))
+        print('Part 1:', sum(s * b[0] for s, b in zip(r[3:], blueprints)))
+        print('Part 2:', prod(r[:3]))
+    else:
+        print('Part 1:', sum(solvee((b, 24)) * b[0] for b in blueprints))
+        print('Part 2:', prod(solvee((b, 32)) for b in blueprints[:3]))
