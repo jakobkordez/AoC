@@ -1,6 +1,6 @@
 from aoc import *
 import re
-from math import prod
+from math import prod, ceil
 import multiprocessing as mp
 import argparse
 
@@ -20,33 +20,42 @@ def solve(blueprint, time):
         if key in memo:
             return memo[key]
 
-        # If possible buy geode robot
-        if ore >= geoRore and obs >= geoRobs:
-            best = f(time - 1, ore + oreR - geoRore, clay + clayR,
-                     obs + obsR - geoRobs, oreR, clayR, obsR) + (time - 1)
-        else:
-            # Buy nothing
-            best = f(time - 1,
-                     ore + oreR, clay + clayR, obs + obsR,
-                     oreR, clayR, obsR)
-            # Buy ore robot
-            if ore >= oreRore:
-                temp = f(time - 1,
-                         ore + oreR - oreRore, clay + clayR, obs + obsR,
-                         oreR + 1, clayR, obsR)
-                best = max(best, temp)
-            # Buy clay robot
-            if ore >= clayRore:
-                temp = f(time - 1,
-                         ore + oreR - clayRore, clay + clayR, obs + obsR,
-                         oreR, clayR + 1, obsR)
-                best = max(best, temp)
-            # Buy obsidian robot
-            if ore >= obsRore and clay >= obsRclay:
-                temp = f(time - 1,
-                         ore + oreR - obsRore, clay + clayR - obsRclay, obs + obsR,
-                         oreR, clayR, obsR + 1)
-                best = max(best, temp)
+        best = 0
+        # Buy geode robot if possible
+        if obsR > 0:
+            treq = max(ceil(max(0, geoRore - ore) / oreR),
+                       ceil(max(0, geoRobs - obs) / obsR)) + 1
+            best = f(time - treq,
+                     ore + oreR * treq - geoRore,
+                     clay + clayR * treq,
+                     obs + obsR * treq - geoRobs,
+                     oreR, clayR, obsR) + (time - treq)
+        # Buy ore robot
+        treq = ceil(max(0, oreRore - ore) / oreR) + 1
+        temp = f(time - treq,
+                 ore + oreR * treq - oreRore,
+                 clay + clayR * treq,
+                 obs + obsR * treq,
+                 oreR + 1, clayR, obsR)
+        best = max(best, temp)
+        # Buy clay robot
+        treq = ceil(max(0, clayRore - ore) / oreR) + 1
+        temp = f(time - treq,
+                 ore + oreR * treq - clayRore,
+                 clay + clayR * treq,
+                 obs + obsR * treq,
+                 oreR, clayR + 1, obsR)
+        best = max(best, temp)
+        # Buy obsidian robot if possible
+        if clayR > 0:
+            treq = max(ceil(max(0, obsRore - ore) / oreR),
+                       ceil(max(0, obsRclay - clay) / clayR)) + 1
+            temp = f(time - treq,
+                     ore + oreR * treq - obsRore,
+                     clay + clayR * treq - obsRclay,
+                     obs + obsR * treq,
+                     oreR, clayR, obsR + 1)
+            best = max(best, temp)
 
         memo[key] = best
         return best
