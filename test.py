@@ -17,7 +17,7 @@ class _Test(unittest.TestCase):
         cwd = path.join(path.dirname(__file__), f'{self.year}')
         try:
             output = subprocess.check_output(
-                [sys.executable, f'{day}.py'], cwd=cwd, timeout=3)
+                [sys.executable, f'{day}.py'], cwd=cwd, timeout=5)
         except subprocess.TimeoutExpired:
             self.skipTest(f'Timeout on {self.year}/{day}')
 
@@ -57,6 +57,7 @@ class Test2022(_Test):
         ['d18', '4302', '2492'],
         ['d19', '1023', '13520'],
         ['d20', '16533', '4789999181006'],
+        ['d21', '160274622817992', '3087390115721'],
     ])
     def test(self, day, *answers):
         super()._test(day, *answers)

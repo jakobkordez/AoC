@@ -18,7 +18,7 @@ def _read(s: str, operation: list, typ: type):
         return typ(s)
 
 
-def read(name: str, operations: list = [], typ: type = str, lstrip: str = '', rstrip: str | None = None):
+def read(name: str, operations: list = [], typ: type = str, lstrip: str = '', rstrip: str = None):
     """
     Reads text file and transforms into specified shape and type
 
