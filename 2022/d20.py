@@ -40,9 +40,9 @@ def solve(decrKey, rounds):
             # Find destination
             val = abs(curr.val) % (N - 1)
             if curr.val > 0:
-                nx = curr.nextN(val)
+                nx = nx.nextN(val)
             else:
-                nx = curr.prevN(val)
+                nx = nx.prevN(val)
             pr = nx.prev
 
             # Insert curr
