@@ -1,7 +1,10 @@
 from os import path
 from random import choice
 from typing import Callable, Any
-from re import Pattern
+from re import Pattern, match
+import requests
+
+YEAR = 2022
 
 
 def _read(s: str, operation: list, typ: type):
@@ -18,7 +21,7 @@ def _read(s: str, operation: list, typ: type):
         return typ(s)
 
 
-def read(name: str, operations: list = [], typ: type = str, lstrip: str = '', rstrip: str = None):
+def read(name: str, operations: list = [], typ: type = str, lstrip: str = '', rstrip: str = None, download: bool = True):
     """
     Reads text file and transforms into specified shape and type
 
@@ -32,6 +35,13 @@ def read(name: str, operations: list = [], typ: type = str, lstrip: str = '', rs
     """
 
     inpPath = path.join(path.dirname(__file__), f'{name}.txt')
+
+    if download and match(r'^i\d+$', name) and not path.exists(inpPath):
+        print('[AoC]: Trying to download input')
+        inpData = _downloadInput(int(name[1:]))
+        if inpData:
+            with open(inpPath, 'w') as f:
+                f.write(inpData)
 
     with open(inpPath) as f:
         file = f.read().rstrip(rstrip).lstrip(lstrip)
@@ -75,3 +85,23 @@ FOUR_NEIGHBOURS = ((0, 1), (0, -1), (1, 0), (-1, 0))
 SIX_NEIGHBOURS = ((0, 0, 1), (0, 0, -1), (0, 1, 0),
                   (0, -1, 0), (1, 0, 0), (-1, 0, 0))
 EIGHT_NEIGHBOURS = (*FOUR_NEIGHBOURS, (1, 1), (1, -1), (-1, 1), (-1, -1))
+
+
+def _downloadInput(day: int):
+    dirPath = path.dirname(path.dirname(__file__))
+    sessionFile = path.join(dirPath, 'session.conf')
+    if not path.exists(sessionFile):
+        print('[AoC]: No session.conf found')
+        return
+
+    with open(sessionFile) as f:
+        sessionKey = f.read().strip()
+
+    session = requests.Session()
+    session.cookies.set('session', sessionKey)
+    r = session.get(f'https://adventofcode.com/{YEAR}/day/{day}/input')
+    if r.status_code != 200:
+        print('[AoC]: Failed to download input', r.status_code)
+        return
+
+    return r.text
