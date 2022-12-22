@@ -27,3 +27,4 @@ Semi-golfed Advent of Code Solutions and inputs
 | 19  | 14 min 2 s | Use flag `-p` to parallelize |
 | 20  |  3828.1 ms |                              |
 | 21  |    14.3 ms |                              |
+| 22  |    12.5 ms | Not all cases covered        |
