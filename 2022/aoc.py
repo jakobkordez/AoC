@@ -2,7 +2,6 @@ from os import path
 from random import choice
 from typing import Callable, Any
 from re import Pattern, match
-import requests
 
 YEAR = 2022
 
@@ -88,6 +87,8 @@ EIGHT_NEIGHBOURS = (*FOUR_NEIGHBOURS, (1, 1), (1, -1), (-1, 1), (-1, -1))
 
 
 def _downloadInput(day: int):
+    import requests
+
     dirPath = path.dirname(path.dirname(__file__))
     sessionFile = path.join(dirPath, 'session.conf')
     if not path.exists(sessionFile):
@@ -105,3 +106,23 @@ def _downloadInput(day: int):
         return
 
     return r.text
+
+
+if __name__ == '__main__':
+    import datetime
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', type=int, default=None, required=False)
+    args = parser.parse_args()
+
+    if args.d:
+        day = args.d
+    else:
+        day = datetime.datetime.now().day
+
+    pth = path.join(path.dirname(__file__), f'd{day}.py')
+    if not path.exists(pth):
+        print('[AoC]: Creating new file')
+        with open(pth, 'w') as f:
+            f.write(f'from aoc import *\n\ndata = read(\'i{day}\')')
