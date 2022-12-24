@@ -28,4 +28,5 @@ Semi-golfed Advent of Code Solutions and inputs
 | 20  |  3828.1 ms |                              |
 | 21  |    14.3 ms |                              |
 | 22  |    12.5 ms | Not all cases covered        |
-| 23  |          ? |                              |
+| 23  |  9914.0 ms |                              |
+| 24  |  1584.7 ms |                              |
