@@ -1,29 +1,16 @@
 from aoc import *
 
 
-def from_snafu(snafu):
-    m = 1
-    ret = 0
-    for e in snafu[::-1]:
-        match e:
-            case '-': e = -1
-            case '=': e = -2
-            case _: e = int(e)
-        ret += e * m
-        m *= 5
-    return ret
+def from_snafu(s):
+    return sum(('=-012'.find(e) - 2) * 5**i for i, e in enumerate(s[::-1]))
 
 
 def to_snafu(n):
     ret = ''
     while n:
         d = n % 5
-        if d == 4:
-            n += 1
-        elif d == 3:
-            n += 3
-        ret += '=-012'[(d+2) % 5]
-        n //= 5
+        ret += '012=-'[d]
+        n = n//5 + (d > 2)
     return ret[::-1]
 
 
