@@ -21,18 +21,16 @@ def solve(seedR):
             rEnd = rStart + rLen
 
             for dStart, sStart, dsLen in step:
-                overlapStart = max(rStart, sStart)
-                overlapEnd = min(rEnd, sStart + dsLen)
-                if overlapStart >= overlapEnd:
+                oStart = max(rStart, sStart)
+                oEnd = min(rEnd, sStart + dsLen)
+                if oStart >= oEnd:
                     continue
-                overlapLen = overlapEnd - overlapStart
-                overlapOffset = overlapStart - sStart
 
-                newRanges.append([dStart + overlapOffset, overlapLen])
-                if overlapStart != rStart:
-                    ranges.append([rStart, overlapStart - rStart])
-                if overlapEnd != rEnd:
-                    ranges.append([overlapEnd, rEnd - overlapEnd])
+                newRanges.append([dStart + oStart - sStart, oEnd - oStart])
+                if oStart != rStart:
+                    ranges.append([rStart, oStart - rStart])
+                if oEnd != rEnd:
+                    ranges.append([oEnd, rEnd - oEnd])
 
                 break
             else:
