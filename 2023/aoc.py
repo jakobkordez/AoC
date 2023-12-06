@@ -55,6 +55,22 @@ def read(
     return _read(file, operations, typ)
 
 
+def binarySearch(a: int, b: int, f: Callable[[int], bool]) -> int:
+    """
+    Binary search for a value in range [a, b)
+
+    `f`: function that returns `True` if the value is too high
+    """
+
+    while a < b:
+        m = (a + b) // 2
+        if f(m):
+            b = m
+        else:
+            a = m + 1
+    return a
+
+
 def clamp(a: int, x: int, b: int):
     return max(a, min(x, b))
 
