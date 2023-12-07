@@ -23,8 +23,8 @@ def solveMath(t, p):
     return t - 2 * floor((t - sqrt(t * t - 4 * p)) / 2) - 1
 
 
-data = zip(*read("i06", ["\n", re.compile(r"\d+")], int))
-print("Part 1:", prod(solveBS(*x) for x in data))
+data = read(6, ["\n", re.compile(r"\d+")], int)
+print("Part 1:", prod(solveBS(*x) for x in zip(*data)))
 
-data = read("i06", ["\n", re.compile(r"\d")])
-print("Part 2:", solveBS(*map(lambda x: int("".join(x)), data)))
+data = read(6, ["\n", re.compile(r"\d")])
+print("Part 2:", solveBS(*map(int, map("".join, data))))

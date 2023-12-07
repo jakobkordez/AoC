@@ -1,7 +1,7 @@
 from aoc import *
 import re
 
-data = read("i04", ["\n", ": ", " | "])
+data = read(4, ["\n", ": ", " | "])
 
 p1 = 0
 p2 = [1] * len(data)

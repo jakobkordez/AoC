@@ -1,7 +1,7 @@
 from aoc import *
 import re, string
 
-data = read("i01", ["\n"])
+data = read(1, ["\n"])
 
 m = [" ", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", *string.digits]
 

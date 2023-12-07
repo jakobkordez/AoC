@@ -1,7 +1,7 @@
 from aoc import *
 from collections import deque
 
-seeds, *stepsRaw = read("i05", ["\n\n"])
+seeds, *stepsRaw = read(5, ["\n\n"])
 
 seeds = list(map(int, seeds.split(": ")[1].split()))
 

@@ -1,7 +1,7 @@
 from aoc import *
 import re
 
-data = read("i03", ["\n"])
+data = read(3, ["\n"])
 
 H = len(data)
 W = len(data[0])

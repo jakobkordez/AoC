@@ -2,7 +2,7 @@ from aoc import *
 from math import prod
 import re
 
-data = read("i02", ["\n", ": ", re.compile(r"\d+ ?\w*"), " "])
+data = read(2, ["\n", ": ", re.compile(r"\d+ ?\w*"), " "])
 
 d = {"red": 12, "green": 13, "blue": 14}
 
