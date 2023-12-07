@@ -21,7 +21,7 @@ def _read(s: str, operation: list, typ: type):
 
 
 def read(
-    name: str,
+    name: str | int,
     operations: list = [],
     typ: type = str,
     lstrip: str = "",
@@ -40,6 +40,8 @@ def read(
     `rstrip`: `str` to rstrip
     """
 
+    if type(name) is int:
+        name = f"i{name:02d}"
     inpPath = path.join(path.dirname(__file__), f"{name}.txt")
 
     if download and match(r"^i\d+$", name) and not path.exists(inpPath):
@@ -147,4 +149,4 @@ if __name__ == "__main__":
     if not path.exists(pth):
         print("[AoC]: Creating new file")
         with open(pth, "w") as f:
-            f.write(f"from aoc import *\n\ndata = read('i{day}')")
+            f.write(f"from aoc import *\n\ndata = read({day})")

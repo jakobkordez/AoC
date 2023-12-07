@@ -2,6 +2,18 @@
 
 Semi-golfed Advent of Code Solutions and inputs
 
+## 2023 Benchmarks
+
+| Day |     Time | Notes |
+| :-: | -------: | ----- |
+|  1  |   7.3 ms |       |
+|  2  |   3.8 ms |       |
+|  3  |  12.0 ms |       |
+|  4  |   4.7 ms |       |
+|  5  |   6.3 ms |       |
+|  6  |   0.9 ms |       |
+|  7  | 115.4 ms |       |
+
 ## 2022 Benchmarks
 
 Timings done on ONE core of a Ryzen 5 4500U
