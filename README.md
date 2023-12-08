@@ -13,6 +13,7 @@ Semi-golfed Advent of Code Solutions and inputs
 |  5  |  6.3 ms |       |
 |  6  |  0.9 ms |       |
 |  7  |  9.3 ms |       |
+|  8  | 38.0 ms |       |
 
 ## 2022 Benchmarks
 
