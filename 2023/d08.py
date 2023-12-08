@@ -10,21 +10,27 @@ for s, l, r in path:
     d[s] = (l, r)
 
 
+def next(c, i):
+    return d[c][instr[i % len(instr)] == "R"]
+
+
 i = 0
 c = "AAA"
 while c != "ZZZ":
-    c = d[c][instr[i % len(instr)] == "R"]
+    c = next(c, i)
     i += 1
 
 print("Part 1:", i)
 
 p2 = 1
-for cc in [k for k in d.keys() if k[-1] == "A"]:
+for c, *_ in path:
+    if c[-1] != "A":
+        continue
     i = 0
     while True:
-        if cc[-1] == "Z":
+        if c[-1] == "Z":
             break
-        cc = d[cc][instr[i % len(instr)] == "R"]
+        c = next(c, i)
         i += 1
     p2 = lcm(p2, i)
 
