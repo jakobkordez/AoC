@@ -4,16 +4,21 @@ Semi-golfed Advent of Code Solutions and inputs
 
 ## 2023 Benchmarks
 
+Timings done on ONE core of a Ryzen 7 1800X
+
+Print statements are replaced with noops
+
 | Day |    Time | Notes |
 | :-: | ------: | ----- |
-|  1  |  7.3 ms |       |
-|  2  |  3.8 ms |       |
-|  3  | 12.0 ms |       |
-|  4  |  4.7 ms |       |
-|  5  |  6.3 ms |       |
-|  6  |  0.9 ms |       |
-|  7  |  9.3 ms |       |
-|  8  | 38.0 ms |       |
+|  1  |  6.8 ms |       |
+|  2  |  3.2 ms |       |
+|  3  | 11.3 ms |       |
+|  4  |  4.1 ms |       |
+|  5  |  5.8 ms |       |
+|  6  |  0.6 ms |       |
+|  7  |  9.2 ms |       |
+|  8  | 35.6 ms |       |
+|  9  |  9.8 ms |       |
 
 ## 2022 Benchmarks
 

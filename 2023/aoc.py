@@ -145,7 +145,7 @@ if __name__ == "__main__":
     else:
         day = datetime.datetime.now().day
 
-    pth = path.join(path.dirname(__file__), f"d{day}.py")
+    pth = path.join(path.dirname(__file__), f"d{day:02d}.py")
     if not path.exists(pth):
         print("[AoC]: Creating new file")
         with open(pth, "w") as f:
