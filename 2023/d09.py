@@ -4,9 +4,7 @@ data = read(9, ["\n", " "], int)
 
 
 def go(a):
-    if all(e == 0 for e in a):
-        return 0
-    return a[-1] + go([b - a for a, b in zip(a, a[1:])])
+    return a[-1] + go([b - a for a, b in zip(a, a[1:])]) if any(a) else 0
 
 
 print("Part 1:", sum(go(a) for a in data))
