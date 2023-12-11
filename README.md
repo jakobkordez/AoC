@@ -8,18 +8,19 @@ Timings done on ONE core of a Ryzen 7 1800X
 
 Print statements are replaced with noops
 
-| Day |    Time | Notes |
-| :-: | ------: | ----- |
-|  1  |  6.8 ms |       |
-|  2  |  3.2 ms |       |
-|  3  | 11.3 ms |       |
-|  4  |  4.1 ms |       |
-|  5  |  5.8 ms |       |
-|  6  |  0.6 ms |       |
-|  7  |  9.2 ms |       |
-|  8  | 35.6 ms |       |
-|  9  |  7.3 ms |       |
-| 10  | 27.1 ms |       |
+| Day |    Time | Notes     |
+| :-: | ------: | --------- |
+|  1  |  6.8 ms |           |
+|  2  |  3.2 ms |           |
+|  3  | 11.3 ms |           |
+|  4  |  4.1 ms |           |
+|  5  |  5.8 ms |           |
+|  6  |  0.6 ms | O(log(n)) |
+|  7  |  9.2 ms |           |
+|  8  | 35.6 ms |           |
+|  9  |  7.3 ms |           |
+| 10  | 27.1 ms |           |
+| 11  | 88.6 ms | O(n^2)    |
 
 ## 2022 Benchmarks
 

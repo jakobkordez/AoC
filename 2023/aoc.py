@@ -81,6 +81,13 @@ def splitByCount(s: str, c: int):
     return [s[i : i + c] for i in range(0, len(s), c)]
 
 
+def rollSum(arr: list):
+    out = [arr[0]] * len(arr)
+    for i in range(1, len(arr)):
+        out[i] = out[i - 1] + arr[i]
+    return out
+
+
 def qsorted(arr: list, cmp: Callable[[Any, Any], int]) -> list:
     """
     Quick sort list with a custom comparator
