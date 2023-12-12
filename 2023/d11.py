@@ -4,32 +4,45 @@ data = read(11, ["\n"], list)
 
 H, W = len(data), len(data[0])
 
-stars = []
-
-col = [1] * W
-row = [1] * H
+col = [True] * W
+row = [True] * H
 for y in range(H):
     for x in range(W):
         if data[y][x] == "#":
-            col[x] = row[y] = 0
-            stars.append((x, y))
-
-col = rollSum(col)
-row = rollSum(row)
-
-N = len(stars)
-
-p1 = p2 = 0
-for i in range(N - 1):
-    x1, y1 = stars[i]
-    for j in range(i + 1, N):
-        x2, y2 = stars[j]
-
-        dxy = abs(x1 - x2) + abs(y1 - y2)
-        sxy = abs(col[x2] - col[x1]) + abs(row[y2] - row[y1])
-        p1 += dxy + sxy
-        p2 += dxy + sxy * 999999
+            col[x] = row[y] = False
 
 
-print("Part 1:", p1)
-print("Part 2:", p2)
+def solve(mult):
+    t = stars = 0
+    colCount = [0] * W
+
+    solution = 0
+    for y in range(H):
+        if row[y]:
+            t += stars * mult
+            continue
+
+        l = r = 0
+        lstars = rstars = 0
+        starsInRow = 0
+        for x in range(W - 1, -1, -1):
+            rstars += colCount[x]
+            r += rstars * (mult if col[x] else 1)
+        for x in range(W):
+            r -= rstars * (mult if col[x] else 1)
+            rstars -= colCount[x]
+            if data[y][x] == "#":
+                starsInRow += 1
+                colCount[x] += 1
+                solution += t + l + r
+            lstars += colCount[x]
+            l += lstars * (mult if col[x] else 1)
+
+        stars += starsInRow
+        t += stars
+
+    return solution
+
+
+print("Part 1:", solve(2))
+print("Part 2:", solve(1000000))
