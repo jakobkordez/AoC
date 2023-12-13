@@ -6,24 +6,25 @@ from re import Pattern, match
 YEAR = 2023
 
 
-def _read(s: str, operation: list, typ: type):
-    if operation:
-        cop, *operation = operation
-        if type(cop) is str:
-            ts = s.split(cop)
-        elif type(cop) is Pattern:
-            ts = cop.findall(s)
-        else:
-            ts = cop(s)
-        return [_read(x, operation, typ) for x in ts]
+def _read(s: str, operation: list):
+    if not operation:
+        return s
+    cop, *operation = operation
+    if type(cop) is str:
+        ts = s.split(cop)
+    elif type(cop) is Pattern:
+        ts = cop.findall(s)
     else:
-        return typ(s)
+        ts = cop(s)
+    if operation:
+        return [_read(x, operation) for x in ts]
+    else:
+        return ts
 
 
 def read(
     name: str | int,
-    operations: list = [],
-    typ: type = str,
+    operations: list[str | Pattern | Callable] = [],
     lstrip: str = "",
     rstrip: str = None,
     download: bool = True,
@@ -31,13 +32,13 @@ def read(
     """
     Reads text file and transforms into specified shape and type
 
-    `operations`: list of operations to perform on the input
-        `str`: split by `str`
-        `Pattern`: findall by `Pattern`
-        `Callable`: call with input
-    `typ`: type to cast to
-    `lstrip`: `str` to lstrip
-    `rstrip`: `str` to rstrip
+    - `operations`: list of operations to perform on the input
+        - `str`: split by `str`
+        - `Pattern`: findall by `Pattern`
+        - `Callable`: call with input
+    - `lstrip`: `str` to lstrip
+    - `rstrip`: `str` to rstrip
+    - `download`: download input if not found locally
     """
 
     if type(name) is int:
@@ -54,14 +55,14 @@ def read(
     with open(inpPath) as f:
         file = f.read().rstrip(rstrip).lstrip(lstrip)
 
-    return _read(file, operations, typ)
+    return _read(file, operations)
 
 
 def binarySearch(a: int, b: int, f: Callable[[int], bool]) -> int:
     """
     Binary search for a value in range [a, b)
 
-    `f`: function that returns `True` if the value is too high
+    - `f`: function that returns `True` if the value is too high
     """
 
     while a < b:

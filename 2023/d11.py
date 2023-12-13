@@ -1,6 +1,6 @@
 from aoc import *
 
-data = read(11, ["\n"], list)
+data = read(11, ["\n", list])
 
 H, W = len(data), len(data[0])
 

@@ -1,6 +1,6 @@
 from aoc import *
 
-data = read(9, ["\n", " "], int)
+data = read(9, ["\n", " ", int])
 
 
 def go(a):

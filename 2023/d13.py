@@ -1,33 +1,38 @@
 from aoc import *
 
-data = read(13, ["\n\n", "\n"], list)
+
+def mapToBits(s: str):
+    return int(s.replace(".", "0").replace("#", "1"), 2)
+
+
+def parse(p: str):
+    p = p.split("\n")
+    return [*map(mapToBits, p)], [*map(mapToBits, map("".join, zip(*p)))]
+
+
+data = read(13, ["\n\n", parse])
 
 MX = 0
 
 
-def _solve(data):
-    H, W = len(data), len(data[0])
+def _solve(data: list[int]):
+    H = len(data)
     for y in range(1, H):
         d = 0
         for i in range(min(H - y, y)):
-            for x in range(W):
-                if data[y - i - 1][x] != data[y + i][x]:
-                    d += 1
-                    if d > MX:
-                        break
-            else:
-                continue
-            break
+            d += (data[y - i - 1] ^ data[y + i]).bit_count()
+            if d > MX:
+                break
         if d == MX:
             return y
     return 0
 
 
 def solve(data):
-    ys = _solve(data)
+    ys = _solve(data[0])
     if ys != 0:
         return ys * 100
-    return _solve([*zip(*data)])
+    return _solve(data[1])
 
 
 print("Part 1:", sum(map(solve, data)))

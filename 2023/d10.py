@@ -1,15 +1,15 @@
 from aoc import *
 from collections import deque
 
-map = read(10, ["\n"], list)
+p = read(10, ["\n", list])
 
-H, W = len(map), len(map[0])
+H, W = len(p), len(p[0])
 
 q = deque()
 
 for y in range(H):
     for x in range(W):
-        if map[y][x] == "S":
+        if p[y][x] == "S":
             q.append((x, y, 0))
             break
     if q:
@@ -25,22 +25,22 @@ while q:
         continue
     done[y][x] = True
 
-    c = map[y][x]
+    c = p[y][x]
     wc = 0
-    if c in "S|F7" and y < H - 1 and map[y + 1][x] in "|LJ":
+    if c in "S|F7" and y < H - 1 and p[y + 1][x] in "|LJ":
         q.append((x, y + 1, i + 1))
         wc += 1
-    if c in "S|LJ" and y > 0 and map[y - 1][x] in "|7F":
+    if c in "S|LJ" and y > 0 and p[y - 1][x] in "|7F":
         q.append((x, y - 1, i + 1))
         wc += 2
-    if c in "S-FL" and x < W - 1 and map[y][x + 1] in "-J7":
+    if c in "S-FL" and x < W - 1 and p[y][x + 1] in "-J7":
         q.append((x + 1, y, i + 1))
         wc += 4
-    if c in "S-J7" and x > 0 and map[y][x - 1] in "-LF":
+    if c in "S-J7" and x > 0 and p[y][x - 1] in "-LF":
         q.append((x - 1, y, i + 1))
         wc += 8
     if c == "S":
-        map[y][x] = "   | FL  7J -"[wc]
+        p[y][x] = "   | FL  7J -"[wc]
     p1 = i
 
 print("Part 1:", p1)
@@ -54,12 +54,12 @@ for y in range(H):
             if c % 2 == 1:
                 p2 += 1
         else:
-            if map[y][x] in "|FL":
-                last = map[y][x]
+            if p[y][x] in "|FL":
+                last = p[y][x]
                 c += 1
-            elif map[y][x] == "7" and last == "F":
+            elif p[y][x] == "7" and last == "F":
                 c += 1
-            elif map[y][x] == "J" and last == "L":
+            elif p[y][x] == "J" and last == "L":
                 c += 1
 
 
