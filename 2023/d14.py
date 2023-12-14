@@ -10,14 +10,14 @@ data = read(14, ["\n", parse])
 H, W = len(data), len(data[0])
 
 
-def roll(x, y, dx, dy):
+def roll(x, y, dx, dy, data=data, H=H, W=W):
     jx, jy = x, y
     mf = max if dx + dy > 0 else min
-    while 0 <= y < H and 0 <= x < W:
+    while 0 <= y and y < H and 0 <= x and x < W:
         if data[y][x] == 2:
             jx = mf(jx, x + dx)
             jy = mf(jy, y + dy)
-            while 0 <= jy < H and 0 <= jx < W:
+            while 0 <= jy and jy < H and 0 <= jx and jx < W:
                 t = data[jy][jx]
                 if t == 1:
                     x, y = jx, jy

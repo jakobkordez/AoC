@@ -1,11 +1,11 @@
 from aoc import *
-from functools import cache
+from functools import lru_cache
 from itertools import repeat, chain
 
 data = read(12, ["\n", " "])
 
 
-@cache
+@lru_cache
 def go(d: str, v: tuple):
     if len(v) == 0:
         return 1 if "#" not in d else 0

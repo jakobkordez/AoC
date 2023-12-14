@@ -21,9 +21,9 @@ Print statements are replaced with noops
 |  9  |    7.3 ms |                    |
 | 10  |   27.1 ms |                    |
 | 11  |   15.0 ms | 88.6 ms for O(n^2) |
-| 12  |  274.5 ms |                    |
+| 12  |  235.2 ms |                    |
 | 13  |    3.4 ms |                    |
-| 14  | 2140.0 ms | C++ 40ms           |
+| 14  | 1800.0 ms | C++ 40ms           |
 
 ## 2022 Benchmarks
 
