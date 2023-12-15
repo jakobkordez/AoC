@@ -12,11 +12,20 @@ H, W = len(data), len(data[0])
 
 def roll(x, y, dx, dy, data=data, H=H, W=W):
     jx, jy = x, y
-    mf = max if dx + dy > 0 else min
+    tst = dx + dy > 0
     while 0 <= y and y < H and 0 <= x and x < W:
         if data[y][x] == 2:
-            jx = mf(jx, x + dx)
-            jy = mf(jy, y + dy)
+            if tst:
+                if jx < x + dx:
+                    jx = x + dx
+                if jy < y + dy:
+                    jy = y + dy
+            else:
+                if jx > x + dx:
+                    jx = x + dx
+                if jy > y + dy:
+                    jy = y + dy
+
             while 0 <= jy and jy < H and 0 <= jx and jx < W:
                 t = data[jy][jx]
                 if t == 1:
