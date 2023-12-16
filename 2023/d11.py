@@ -17,26 +17,30 @@ def solve(mult):
     colCount = [0] * W
 
     solution = 0
+    startR = 0
     for y in range(H):
         if row[y]:
             t += stars * mult
             continue
 
-        l = r = 0
-        lstars = rstars = 0
+        l = lstars = 0
         starsInRow = 0
-        for x in range(W - 1, -1, -1):
-            rstars += colCount[x]
-            r += rstars * (mult if col[x] else 1)
+        r = startR
+        rstars = stars
+        trux = 0
         for x in range(W):
-            r -= rstars * (mult if col[x] else 1)
+            colx = mult if col[x] else 1
+            trux += colx
+
+            r -= rstars * colx
             rstars -= colCount[x]
             if data[y][x] == "#":
                 starsInRow += 1
                 colCount[x] += 1
                 solution += t + l + r
+                startR += trux
             lstars += colCount[x]
-            l += lstars * (mult if col[x] else 1)
+            l += lstars * colx
 
         stars += starsInRow
         t += stars

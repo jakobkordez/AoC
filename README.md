@@ -20,7 +20,7 @@ Print statements are replaced with noops
 |  8  |   35.6 ms |                    |
 |  9  |    7.3 ms |                    |
 | 10  |   27.1 ms |                    |
-| 11  |   15.0 ms | 88.6 ms for O(n^2) |
+| 11  |   11.9 ms | 88.6 ms for O(n^2) |
 | 12  |  235.2 ms |                    |
 | 13  |    3.4 ms |                    |
 | 14  | 1360.0 ms | C++ 40ms           |
