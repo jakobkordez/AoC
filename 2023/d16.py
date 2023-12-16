@@ -5,7 +5,7 @@ data = read(16, ["\n", list])
 H, W = len(data), len(data[0])
 
 
-def go(x, y, dx, dy, ener: list[list], seen: set, data=data):
+def go(x, y, dx, dy, ener: list[list], seen: set, data=data, H=H, W=W):
     while True:
         if x < 0 or x >= W or y < 0 or y >= H:
             return
@@ -41,11 +41,11 @@ print("Part 1:", solve(0, 0, 1, 0))
 
 mx = 0
 
-for y in range(W):
+for y in range(H):
     mx = max(mx, solve(0, y, 1, 0))
     mx = max(mx, solve(W - 1, y, -1, 0))
 
-for x in range(H):
+for x in range(W):
     mx = max(mx, solve(x, 0, 0, 1))
     mx = max(mx, solve(x, H - 1, 0, -1))
 
