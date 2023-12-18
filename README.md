@@ -12,7 +12,7 @@ Print statements are replaced with noops
 | :-: | --------: | ------------------ |
 |  1  |    6.8 ms |                    |
 |  2  |    3.2 ms |                    |
-|  3  |   11.3 ms |                    |
+|  3  |    9.5 ms |                    |
 |  4  |    4.1 ms |                    |
 |  5  |    5.8 ms |                    |
 |  6  |    0.6 ms | O(log(n))          |

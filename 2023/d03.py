@@ -1,19 +1,22 @@
 from aoc import *
 import re
 
+symb = re.compile(r"[^\.\d]")
+nums = re.compile(r"\d+")
+
 data = read(3, ["\n"])
 
 H = len(data)
 W = len(data[0])
 
-p = [list(re.finditer(r"\d+", l)) for l in data]
+p = [list(nums.finditer(l)) for l in data]
 
 p1 = 0
 for y in range(H):
     for pp in p[y]:
         s, e = pp.span()
         if any(
-            re.search("[^.\d]", data[i][max(s - 1, 0) : e + 1])
+            symb.search(data[i], s - 1, e + 1)
             for i in range(max(0, y - 1), min(H, y + 2))
         ):
             p1 += int(pp.group(0))
