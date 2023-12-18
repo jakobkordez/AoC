@@ -5,25 +5,22 @@ data = read(18, ["\n", " "])
 
 def solve(data):
     x = y = 0
-    p = []
-    obr = 0
+    a = o = 0
     for d, c in data:
-        obr += c
+        o += c
+        nx, ny = x, y
         if d == 0:
-            x += c
+            nx += c
         elif d == 1:
-            y += c
+            ny += c
         elif d == 2:
-            x -= c
+            nx -= c
         elif d == 3:
-            y -= c
-        p.append((x, y))
+            ny -= c
+        a += x * ny - nx * y
+        x, y = nx, ny
 
-    a = 0
-    for (x1, y1), (x2, y2) in zip(p, roll(p, 1)):
-        a += x1 * y2 - x2 * y1
-
-    return (abs(a) + obr) // 2 + 1
+    return (abs(a) + o) // 2 + 1
 
 
 print("Part 1:", solve(("RDLU".find(d), int(c)) for d, c, _ in data))
