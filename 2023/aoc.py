@@ -89,6 +89,10 @@ def rollSum(arr: list):
     return out
 
 
+def roll(arr: list, n: int):
+    return arr[n:] + arr[:n]
+
+
 def qsorted(arr: list, cmp: Callable[[Any, Any], int]) -> list:
     """
     Quick sort list with a custom comparator
