@@ -29,6 +29,7 @@ Print statements are replaced with noops
 | 17  | 2550.0 ms | C++ 370ms          |
 | 18  |    1.5 ms |                    |
 | 19  |   24.5 ms |                    |
+| 20  |  225.5 ms |                    |
 
 ## 2022 Benchmarks
 
