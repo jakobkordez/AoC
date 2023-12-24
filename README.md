@@ -33,6 +33,7 @@ Print statements are replaced with noops
 | 21  |  555.9 ms |                    |
 | 22  |  420.0 ms |                    |
 | 23  |   11.85 s |                    |
+| 24  |  601.5 ms |                    |
 
 ## 2022 Benchmarks
 
