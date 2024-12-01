@@ -2,6 +2,16 @@
 
 Semi-golfed Advent of Code Solutions and inputs
 
+## 2024 Benchmarks
+
+Timings done on ONE core of a Ryzen 7 1800X
+
+Print statements are replaced with noops
+
+| Day |   Time | Notes |
+| :-: | -----: | ----- |
+|  1  | 2.8 ms |       |
+
 ## 2023 Benchmarks
 
 Timings done on ONE core of a Ryzen 7 1800X
