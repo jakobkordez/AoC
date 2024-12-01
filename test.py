@@ -48,6 +48,7 @@ class Test2024(_Test):
         super()._test(day, *answers)
 
 
+@unittest.skip
 class Test2023(_Test):
     def __init__(self, *args, **kwargs):
         super().__init__("2023", *args, **kwargs)

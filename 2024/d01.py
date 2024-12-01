@@ -1,11 +1,9 @@
 from aoc import *
 from collections import Counter
 
-data = read(1, ["\n", "   ", int])
+data = read(1, [str.split, int])
 
-cols = list(zip(*data))
+print("Part 1:", sum(abs(b - a) for a, b in zip(sorted(data[::2]), sorted(data[1::2]))))
 
-print("Part 1:", sum(abs(b - a) for a, b in zip(*map(sorted, cols))))
-
-c = Counter(cols[1])
-print("Part 2:", sum(v * c[v] for v in cols[0]))
+c = Counter(data[1::2])
+print("Part 2:", sum(v * c[v] for v in data[::2]))

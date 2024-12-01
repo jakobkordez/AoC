@@ -10,7 +10,7 @@ Print statements are replaced with noops
 
 | Day |   Time | Notes |
 | :-: | -----: | ----- |
-|  1  | 2.8 ms |       |
+|  1  | 2.1 ms |       |
 
 ## 2023 Benchmarks
 
