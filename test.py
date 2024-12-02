@@ -42,6 +42,7 @@ class Test2024(_Test):
     @parameterized.expand(
         [
             ["d01", "2904518", "18650129"],
+            ["d02", "483", "528"],
         ]
     )
     def test(self, day, *answers):

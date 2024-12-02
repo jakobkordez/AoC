@@ -8,9 +8,10 @@ Timings done on ONE core of a Ryzen 7 1800X
 
 Print statements are replaced with noops
 
-| Day |   Time | Notes |
-| :-: | -----: | ----- |
-|  1  | 2.1 ms |       |
+| Day |    Time | Notes |
+| :-: | ------: | ----- |
+|  1  |  2.1 ms |       |
+|  2  | 15.5 ms |       |
 
 ## 2023 Benchmarks
 
