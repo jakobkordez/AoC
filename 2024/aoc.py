@@ -117,9 +117,9 @@ def qsorted(arr: list, cmp: Callable[[Any, Any], int]) -> list:
     return qsorted(left, cmp) + middle + qsorted(right, cmp)
 
 
-FOUR_NEIGHBOURS = ((0, -1), (1, 0), (0, 1), (-1, 0))
-SIX_NEIGHBOURS = ((0, 0, 1), (0, 0, -1), (0, 1, 0), (0, -1, 0), (1, 0, 0), (-1, 0, 0))
-EIGHT_NEIGHBOURS = (*FOUR_NEIGHBOURS, (1, 1), (1, -1), (-1, 1), (-1, -1))
+FOUR_NEIGHBOURS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+SIX_NEIGHBOURS = [(0, 0, 1), (0, 0, -1), (0, 1, 0), (0, -1, 0), (1, 0, 0), (-1, 0, 0)]
+EIGHT_NEIGHBOURS = [*FOUR_NEIGHBOURS, (1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 
 def _downloadInput(day: int):
