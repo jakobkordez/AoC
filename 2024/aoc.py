@@ -162,3 +162,6 @@ if __name__ == "__main__":
         print("[AoC]: Creating new file")
         with open(pth, "w") as f:
             f.write(f"from aoc import *\n\ndata = read({day})")
+
+    with open(pth) as f:
+        exec(f.read())
