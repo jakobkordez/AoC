@@ -8,13 +8,14 @@ Timings done on ONE core of a Ryzen 7 1800X
 
 Print statements are replaced with noops
 
-| Day |    Time | Notes |
-| :-: | ------: | ----- |
-|  1  |  2.1 ms |       |
-|  2  | 15.5 ms |       |
-|  3  |  1.7 ms |       |
-|  4  | 36.3 ms |       |
-|  5  | 56.3 ms |       |
+| Day |    Time | Notes                   |
+| :-: | ------: | ----------------------- |
+|  1  |  2.1 ms |                         |
+|  2  | 15.5 ms |                         |
+|  3  |  1.7 ms |                         |
+|  4  | 36.3 ms |                         |
+|  5  | 56.3 ms |                         |
+|  6  |  12.1 s | 2s in C++ with `-Ofast` |
 
 ## 2023 Benchmarks
 
