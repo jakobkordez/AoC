@@ -17,6 +17,7 @@ Print statements are replaced with noops
 |  5  | 56.3 ms |                         |
 |  6  |  12.1 s | 2s in C++ with `-Ofast` |
 |  7  |   2.8 s |                         |
+|  8  |  1.4 ms |                         |
 
 ## 2023 Benchmarks
 
