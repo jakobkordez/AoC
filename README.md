@@ -18,6 +18,7 @@ Print statements are replaced with noops
 |  6  |  12.1 s | 2s in C++ with `-Ofast` |
 |  7  |   2.8 s |                         |
 |  8  |  1.4 ms |                         |
+|  9  |   1.3 s | Too lazy for seg. tree  |
 
 ## 2023 Benchmarks
 
