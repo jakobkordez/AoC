@@ -20,6 +20,7 @@ Print statements are replaced with noops
 |  8  |  1.4 ms |                         |
 |  9  |   1.3 s | Too lazy for seg. tree  |
 | 10  |  5.8 ms |                         |
+| 11  |  110 ms |                         |
 
 ## 2023 Benchmarks
 
