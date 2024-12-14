@@ -23,7 +23,6 @@ for x, y, dx, dy in data:
     p[inQuad(x, y)] += 1
 print("Part 1:", prod(p[1:]))
 
-bestScore = 200
 for s in count():
     p = np.zeros((H, W), np.bool8)
     for x, y, dx, dy in data:
@@ -31,7 +30,6 @@ for s in count():
         y = (y + dy * s) % H
         p[y, x] = True
     score = np.count_nonzero(p[:-1, 1:-1] * (p[1:, 2:] | p[1:, :-2]))
-    if score > bestScore:
+    if score > 200:
         break
-
 print("Part 2:", s)
