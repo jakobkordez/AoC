@@ -24,7 +24,7 @@ for x, y, dx, dy in data:
 print("Part 1:", prod(p[1:]))
 
 for s in count():
-    p = np.zeros((H, W), np.bool8)
+    p = np.zeros((H, W), np.bool_)
     for x, y, dx, dy in data:
         x = (x + dx * s) % W
         y = (y + dy * s) % H
