@@ -1,11 +1,9 @@
 from aoc import *
 import re
-from functools import cache
 
 (A, B, C), program = read(17, ["\n\n", re.compile("\d+"), int])
 
 
-@cache
 def solve(a, b=B, c=C):
     def combo(op):
         match op:
@@ -56,43 +54,21 @@ def solve(a, b=B, c=C):
 print("Part 1:", ",".join(map(str, solve(A))))
 
 
-def go(bot, top, i):
+def go(val, i):
     if i < 0:
-        return bot
-    for m in range(bot, top, 8 ** max(0, i - 1)):
-        res = solve(m)
-        if res[i:] != program[i:]:
+        return val
+    mul = 8**i
+    for k in range(8):
+        t = val + mul * k
+        res = solve(t)
+
+        if res[i] != program[i]:
             continue
 
-        a = bot
-        b = m
-        while a + 1 < b:
-            m = (a + b) // 2
-            res = solve(m)
-            if res[i:] != program[i:]:
-                a = m
-            else:
-                b = m
-        bot = b
-
-        a = bot
-        b = top
-        while a + 1 < b:
-            m = (a + b) // 2
-            res = solve(m)
-            if res[i:] != program[i:]:
-                b = m
-            else:
-                a = m
-        top = b
-
-        res = go(bot, top, i - 1)
+        res = go(t, i - 1)
         if res:
             return res
 
 
-bot = 0o1
-while len(solve(bot)) != len(program):
-    bot *= 8
-
-print("Part 2:", go(bot, bot * 8, len(program) - 1))
+t = len(program) - 1
+print("Part 2:", go(8**t, t))
