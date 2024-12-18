@@ -1,6 +1,5 @@
 from aoc import *
 from collections import deque
-from bisect import bisect
 
 data = read(18, ["\n", ",", int])
 H = W = 71
