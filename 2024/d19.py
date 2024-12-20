@@ -17,12 +17,12 @@ class Trie:
             self.c.setdefault(s[0], Trie())
             self.c[s[0]].add(s[1:])
 
-    def get(self, s: str):
+    def get(self, s: str, d=0):
         ret = []
         if s != "" and s[0] in self.c:
-            ret.extend(e + 1 for e in self.c[s[0]].get(s[1:]))
+            ret.extend(self.c[s[0]].get(s[1:], d + 1))
         if self.e:
-            ret.append(0)
+            ret.append(d)
         return ret
 
 
