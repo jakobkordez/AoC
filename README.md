@@ -8,29 +8,29 @@ Timings done on ONE core of a Ryzen 7 1800X
 
 Print statements are replaced with noops
 
-| Day |    Time | Notes                   |
-| :-: | ------: | ----------------------- |
-|  1  |  2.1 ms |                         |
-|  2  | 15.5 ms |                         |
-|  3  |  1.7 ms |                         |
-|  4  | 36.3 ms |                         |
-|  5  | 56.3 ms |                         |
-|  6  |  12.1 s | 2s in C++ with `-Ofast` |
-|  7  |   2.8 s |                         |
-|  8  |  1.4 ms |                         |
-|  9  |   1.3 s | Too lazy for seg. tree  |
-| 10  |  5.8 ms |                         |
-| 11  |  110 ms |                         |
-| 12  |  400 ms |                         |
-| 13  |  3.2 ms |                         |
-| 14  |   2.3 s |                         |
-| 15  |   45 ms |                         |
-| 16  |   80 ms |                         |
-| 17  |  6.2 ms |                         |
-| 18  | 20.5 ms |                         |
-| 19  |   60 ms | Optimized with Trie     |
-| 20  |   60 ms | Optimized with Numpy    |
-| 21  |  2.8 ms |                         |
+| Day |    Time | Notes                  |
+| :-: | ------: | ---------------------- |
+|  1  |  2.1 ms |                        |
+|  2  | 15.5 ms |                        |
+|  3  |  1.7 ms |                        |
+|  4  | 36.3 ms |                        |
+|  5  | 56.3 ms |                        |
+|  6  |  380 ms | Optimized with bisect  |
+|  7  |   2.8 s |                        |
+|  8  |  1.4 ms |                        |
+|  9  |   1.3 s | Too lazy for seg. tree |
+| 10  |  5.8 ms |                        |
+| 11  |  110 ms |                        |
+| 12  |  260 ms |                        |
+| 13  |  3.2 ms |                        |
+| 14  |   2.3 s |                        |
+| 15  |   45 ms |                        |
+| 16  |   80 ms |                        |
+| 17  |  6.2 ms |                        |
+| 18  | 20.5 ms |                        |
+| 19  |   60 ms | Optimized with Trie    |
+| 20  |   60 ms | Optimized with Numpy   |
+| 21  |  2.8 ms |                        |
 
 ## 2023 Benchmarks
 
