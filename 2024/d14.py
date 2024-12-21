@@ -4,7 +4,7 @@ from math import prod
 from itertools import count
 import numpy as np
 
-data = read(14, ["\n", re.compile("-?\d+"), int])
+data = np.array(read(14, ["\n", re.compile("-?\d+"), int]), dtype=np.int32)
 W, H = 101, 103
 
 
@@ -24,12 +24,10 @@ for x, y, dx, dy in data:
 print("Part 1:", prod(p[1:]))
 
 for s in count():
-    p = np.zeros((H, W), np.bool_)
-    for x, y, dx, dy in data:
-        x = (x + dx * s) % W
-        y = (y + dy * s) % H
-        p[y, x] = True
-    score = np.count_nonzero(p[:-1, 1:-1] * (p[1:, 2:] | p[1:, :-2]))
+    p = np.zeros((W, H), np.bool_)
+    d = (data[:, :2] + data[:, 2:] * s) % [W, H]
+    p[*d.T] = True
+    score = np.count_nonzero(p[:-1] & p[1:])
     if score > 200:
         break
 print("Part 2:", s)

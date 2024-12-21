@@ -23,7 +23,7 @@ Print statements are replaced with noops
 | 11  |  110 ms |                        |
 | 12  |  260 ms |                        |
 | 13  |  3.2 ms |                        |
-| 14  |   2.3 s |                        |
+| 14  |  330 ms | Optimized with Numpy   |
 | 15  |   45 ms |                        |
 | 16  |   80 ms |                        |
 | 17  |  6.2 ms |                        |
