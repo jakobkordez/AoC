@@ -1,4 +1,5 @@
 from aoc import *
+import numpy as np
 
 data = read(20, ["\n", list])
 
@@ -12,18 +13,18 @@ for y in range(H):
         continue
     break
 
-p = [[-1] * W for _ in range(H)]
+p = np.ones((H, W)) * -1
 
 c = 0
 while data[y][x] != "E":
-    p[y][x] = c
+    p[y, x] = c
     c += 1
     for dx, dy in FOUR_NEIGHBOURS:
-        if data[y + dy][x + dx] != "#" and p[y + dy][x + dx] == -1:
+        if data[y + dy][x + dx] != "#" and p[y + dy, x + dx] == -1:
             y += dy
             x += dx
             break
-p[y][x] = c
+p[y, x] = c
 
 
 def solve(n):
@@ -40,19 +41,10 @@ def solve(n):
     flower = [e for s in flower for e in s]
 
     result = 0
-    for y in range(H):
-        for x in range(W):
-            if data[y][x] == "#":
-                continue
-            for dx, dy in flower:
-                nx, ny = x + dx, y + dy
-                if (
-                    0 <= nx < W
-                    and 0 <= ny < H
-                    and data[ny][nx] != "#"
-                    and p[ny][nx] - p[y][x] - abs(dy) - abs(dx) >= 100
-                ):
-                    result += 1
+    for dx, dy in flower:
+        p1 = p[max(0, -dy) : min(H - dy, H), max(0, -dx) : min(W - dx, W)]
+        p2 = p[max(0, dy) : min(H + dy, H), max(0, dx) : min(W + dx, W)]
+        result += np.count_nonzero((p1 - p2 >= 100 + abs(dy) + abs(dx)) & (p2 >= 0))
     return result
 
 
