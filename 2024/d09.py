@@ -1,4 +1,5 @@
 from aoc import *
+from heapq import heappop, heappush
 
 data = read(9, [list, int])
 
@@ -50,25 +51,29 @@ while full_i >= 0:
 print("Part 1:", p1)
 
 
-free = list(free_copy)
 full = list(full_copy)
+free = [[] for _ in range(10)]
+for l, r in free_copy:
+    heappush(free[r - l], l)
 
 p2 = 0
 for full_i in range(len(full) - 1, 0, -1):
     fullL, fullR = full[full_i]
     fullLen = fullR - fullL
-    for free_i in range(len(free)):
-        freeL, freeR = free[free_i]
-        if freeL > fullL:
-            break
-        freeLen = freeR - freeL
-        if freeLen >= fullLen:
-            full[full_i] = (freeL, freeL + fullLen)
-            if freeLen == fullLen:
-                free.pop(free_i)
-            else:
-                free[free_i] = (freeL + fullLen, freeR)
-            break
+
+    min_i = 0
+    min_v = fullL
+    for i in range(fullLen, 10):
+        if free[i][0] < min_v:
+            min_i = i
+            min_v = free[i][0]
+
+    if min_i != 0:
+        heappop(free[min_i])
+        if min_i > fullLen:
+            heappush(free[min_i - fullLen], min_v + fullLen)
+        full[full_i] = (min_v, min_v + fullLen)
+
     p2 += full_i * rangeSum(*full[full_i])
 
 print("Part 2:", p2)

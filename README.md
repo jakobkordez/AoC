@@ -18,7 +18,7 @@ Print statements are replaced with noops
 |  6  |  380 ms | Optimized with bisect  |
 |  7  |   2.1 s |                        |
 |  8  |  1.4 ms |                        |
-|  9  |   1.3 s | Too lazy for seg. tree |
+|  9  |   54 ms | Optimized with 9 heaps |
 | 10  |  5.8 ms |                        |
 | 11  |  110 ms |                        |
 | 12  |  260 ms |                        |
