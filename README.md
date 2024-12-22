@@ -16,7 +16,7 @@ Print statements are replaced with noops
 |  4  | 36.3 ms |                        |
 |  5  | 56.3 ms |                        |
 |  6  |  380 ms | Optimized with bisect  |
-|  7  |   2.1 s |                        |
+|  7  |  200 ms | Optimized with Numpy   |
 |  8  |  1.4 ms |                        |
 |  9  |   54 ms | Optimized with 9 heaps |
 | 10  |  5.8 ms |                        |

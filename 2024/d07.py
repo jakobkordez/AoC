@@ -1,36 +1,25 @@
 from aoc import *
 import re
-from functools import cache
+import numpy as np
 
 data = read(7, ["\n", re.compile(r"\d+"), int])
 
 
-@cache
-def p(b):
-    a = 1
-    while b > 0:
-        a *= 10
-        b //= 10
-    return a
-
-
-def solve(temp, i, a, target, part):
-    if temp > target:
-        return False
-    if i == len(a):
-        return temp == target
-    return (
-        (part and solve(temp * p(a[i]) + a[i], i + 1, a, target, part))
-        or solve(temp + a[i], i + 1, a, target, part)
-        or solve(temp * a[i], i + 1, a, target, part)
-    )
-
+p = [10] * 10 + [100] * 90 + [1000] * 900
 
 p1 = p2 = 0
 for res, *vals in data:
-    if solve(vals[0], 1, vals, res, 0):
+    arr = np.array([vals[0]], dtype=np.int64)
+    for n in vals[1:]:
+        arr = np.concatenate([arr + n, arr * n])
+    if res in arr:
         p1 += res
-    elif solve(vals[0], 1, vals, res, 1):
+        continue
+
+    arr = np.array([vals[0]], dtype=np.int64)
+    for n in vals[1:]:
+        arr = np.concatenate([arr + n, arr * n, arr * p[n] + n])
+    if res in arr:
         p2 += res
 
 print("Part 1:", p1)
