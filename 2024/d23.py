@@ -22,19 +22,19 @@ for a, b in data:
 print("Part 1:", p1 // 3)
 
 
-nItems = nodes.items()
+nItems = list(nodes.items())
 cache = {}
 
 
-def go(party: set):
+def go(party: set, i=0):
     key = ",".join(sorted(party))
     if key in cache:
         return cache[key]
     m = party
-    for n, nSet in nItems:
+    for j, (n, nSet) in enumerate(nItems[i:]):
         if n in m or not party.issubset(nSet):
             continue
-        r = go({*party, n})
+        r = go({*party, n}, i + j + 1)
         if len(r) > len(m):
             m = r
     cache[key] = m
