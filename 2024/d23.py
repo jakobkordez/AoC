@@ -1,6 +1,5 @@
 from aoc import *
 from collections import defaultdict
-from time import time
 
 data = read(23, ["\n", "-"])
 
