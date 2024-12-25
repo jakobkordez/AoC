@@ -65,6 +65,7 @@ class Test2024(_Test):
             ["d22", "16299144133", "1896"],
             ["d23", "1230", "az,cj,kp,lm,lt,nj,rf,rx,sn,ty,ui,wp,zo"],
             ["d24", "41324968993486", "bmn,jss,mvb,rds,wss,z08,z18,z23"],
+            ["d25", "3269"],
         ]
     )
     def test(self, day, *answers):
