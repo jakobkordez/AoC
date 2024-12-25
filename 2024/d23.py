@@ -23,13 +23,9 @@ print("Part 1:", p1 // 3)
 
 
 nItems = list(nodes.items())
-cache = {}
 
 
 def go(party: set, i=0):
-    key = ",".join(sorted(party))
-    if key in cache:
-        return cache[key]
     m = party
     for j, (n, nSet) in enumerate(nItems[i:]):
         if n in m or not party.issubset(nSet):
@@ -37,7 +33,6 @@ def go(party: set, i=0):
         r = go({*party, n}, i + j + 1)
         if len(r) > len(m):
             m = r
-    cache[key] = m
     return m
 
 
