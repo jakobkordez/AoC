@@ -29,21 +29,19 @@ while heap[0][1] != FX or heap[0][2] != FY:
 
 print("Part 1:", heap[0][0])
 
-stack = [heappop(heap)]
-while heap[0][0] == stack[0][0]:
-    stack.append(heappop(heap))
 
+heap = [heap[0]]
 spotCount = set()
-while stack:
-    score, x, y, dx, dy = stack.pop()
+while heap:
+    score, x, y, dx, dy = heap.pop()
     if visited.get((x, y, dx, dy)) != score:
         continue
     spotCount.add((x, y))
     visited[(x, y, dx, dy)] = 0
     if data[y - dy][x - dx] != "#":
-        stack.append((score - 1, x - dx, y - dy, dx, dy))
-    stack.append((score - 1000, x, y, -dy, dx))
-    stack.append((score - 1000, x, y, dy, -dx))
+        heap.append((score - 1, x - dx, y - dy, dx, dy))
+    heap.append((score - 1000, x, y, -dy, dx))
+    heap.append((score - 1000, x, y, dy, -dx))
 
 
 print("Part 2:", len(spotCount))
