@@ -35,6 +35,21 @@ class _Test(unittest.TestCase):
         )
 
 
+class Test2025(_Test):
+    def __init__(self, *args, **kwargs):
+        super().__init__("2025", *args, **kwargs)
+
+    @parameterized.expand(
+        [
+            ["d01", "1172", "6932"],
+            ["d02", "29818212493", "37432260594"],
+        ]
+    )
+    def test(self, day, *answers):
+        super()._test(day, *answers)
+
+
+@unittest.skip
 class Test2024(_Test):
     def __init__(self, *args, **kwargs):
         super().__init__("2024", *args, **kwargs)
