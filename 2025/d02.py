@@ -6,9 +6,10 @@ data = read(2, [",", "-", int])
 def solve(m):
     for s, e in data:
         i = 1
+        while int(str(i) * m) < e:
+            i += 1
         while (n := int(str(i) * m)) < e:
-            if n >= s:
-                yield n
+            yield n
             i += 1
 
 
