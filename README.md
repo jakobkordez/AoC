@@ -2,6 +2,18 @@
 
 Semi-golfed Advent of Code Solutions and inputs
 
+## 2025 Benchmarks
+
+Timings done on ONE core of a Ryzen 7 5800X
+
+Print statements are replaced with noops
+
+| Day |    Time | Notes |
+| :-: | ------: | ----- |
+|  1  |  2.7 ms |       |
+|  2  | 81.5 ms |       |
+|  3  |  7.9 ms |       |
+
 ## 2024 Benchmarks
 
 Timings done on ONE core of a Ryzen 7 1800X
