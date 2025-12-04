@@ -6,7 +6,7 @@ data = read(2, [",", "-", int])
 def solve(m):
     for s, e in data:
         i = 1
-        while int(str(i) * m) < e:
+        while int(str(i) * m) < s:
             i += 1
         while (n := int(str(i) * m)) < e:
             yield n
