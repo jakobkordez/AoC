@@ -8,11 +8,12 @@ Timings done on ONE core of a Ryzen 7 5800X
 
 Print statements are replaced with noops
 
-| Day |    Time | Notes |
-| :-: | ------: | ----- |
-|  1  |  2.7 ms |       |
-|  2  | 81.5 ms |       |
-|  3  |  7.9 ms |       |
+| Day |    Time | Notes                |
+| :-: | ------: | -------------------- |
+|  1  |  2.7 ms |                      |
+|  2  | 81.5 ms |                      |
+|  3  |  7.9 ms |                      |
+|  4  | 19.5 ms | Optimized with Numpy |
 
 ## 2024 Benchmarks
 
