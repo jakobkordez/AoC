@@ -6,7 +6,7 @@ from re import Pattern, match
 YEAR = 2025
 
 
-def _read(s: str, operation: list):
+def split(s: str, operation: list):
     if not operation:
         return s
     cop, *operation = operation
@@ -17,7 +17,7 @@ def _read(s: str, operation: list):
     else:
         ts = cop(s)
     if operation:
-        return [_read(x, operation) for x in ts]
+        return [split(x, operation) for x in ts]
     else:
         return ts
 
@@ -55,7 +55,7 @@ def read(
     with open(inpPath) as f:
         file = f.read().rstrip(rstrip).lstrip(lstrip)
 
-    return _read(file, operations)
+    return split(file, operations)
 
 
 def binarySearch(a: int, b: int, f: Callable[[int], bool]) -> int:
@@ -83,10 +83,10 @@ def splitByCount(s: str, c: int):
 
 
 def rollSum(arr: list):
-    out = [arr[0]] * len(arr)
-    for i in range(1, len(arr)):
-        out[i] = out[i - 1] + arr[i]
-    return out
+    out = [0]
+    for e in arr:
+        out.append(out[-1] + e)
+    return out[1:]
 
 
 def roll(arr: list, n: int):
