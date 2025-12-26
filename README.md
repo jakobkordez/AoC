@@ -19,7 +19,7 @@ Print statements are replaced with noops
 |  7  |  2.3 ms |                      |
 |  8  |  700 ms |                      |
 |  9  |  606 ms |                      |
-| 10  |     7 s |                      |
+| 10  |  950 ms |                      |
 | 11  |  1.5 ms |                      |
 | 12  |  3.5 ms |                      |
 
